@@ -9,50 +9,59 @@ columna3_TaTeTi = ['_', '_', '_']
 filas_TaTeTi = [columna1_TaTeTi, columna2_TaTeTi, columna3_TaTeTi]
 
 def mostrar_tablero():
-    print("   0 1 2 --->")
-    print("0 |{}|{}|{}|".format(columna1_TaTeTi[0], columna1_TaTeTi[1], columna1_TaTeTi[2]))
-    print("1 |{}|{}|{}|".format(columna2_TaTeTi[0], columna2_TaTeTi[1], columna2_TaTeTi[2]))
-    print("2 |{}|{}|{}|".format(columna3_TaTeTi[0], columna3_TaTeTi[1], columna3_TaTeTi[2]))
+    print("   1 2 3 --->")
+    print("1 |{}|{}|{}|".format(columna1_TaTeTi[0], columna1_TaTeTi[1], columna1_TaTeTi[2]))
+    print("2 |{}|{}|{}|".format(columna2_TaTeTi[0], columna2_TaTeTi[1], columna2_TaTeTi[2]))
+    print("3 |{}|{}|{}|".format(columna3_TaTeTi[0], columna3_TaTeTi[1], columna3_TaTeTi[2]))
     print("")
     print("|")
     print("V")
 
 #JUGADOR 1
 def player1():
-    seleccionPlayer1_columna = int(input("Selecciona una columna: "))
-    seleccionPlayer1_fila = int(input("Selecciona una fila: "))
+    seleccionPlayer1_columna = int(input("Selecciona una columna: ") - 1)
+    seleccionPlayer1_fila = int(input("Selecciona una fila: ") - 1)
 
     fila_Player1 = filas_TaTeTi[seleccionPlayer1_fila]
-    columna_Player1 = fila_Player1.insert(seleccionPlayer1_columna, 'X')
+    columna_Player1 = fila_Player1[seleccionPlayer1_columna] = 'X'
 
 #JUGADOR 2
 def player2():
-    seleccionPlayer2_columna = int(input("Selecciona una columna: "))
-    seleccionPlayer2_fila = int(input("Selecciona una fila: "))
+    seleccionPlayer2_columna = int(input("Selecciona una columna: ") - 1)
+    seleccionPlayer2_fila = int(input("Selecciona una fila: ") - 1)
 
     fila_Player2 = filas_TaTeTi[seleccionPlayer2_fila]
-    columna_Player2 = fila_Player2.insert(seleccionPlayer2_columna, '0')
+    columna_Player2 = fila_Player2[seleccionPlayer2_columna] = '0'
 
 #WIN
+win_Player1 = False
 def win_player1_col():
     for i in (0, 1, 2):
         if columna1_TaTeTi[i] == 'X' and columna2_TaTeTi[i] == 'X' and columna3_TaTeTi[i] == 'X':
+            win_Player1 = True
             print("Ganó Jugador 1!!!")
             print("")
             mostrar_tablero()
             sys.exit()
-        else:
-            return -1
 
+def win_player1_fila():
+    for i in (0, 1, 2):
+        if filas_TaTeTi[columna1_TaTeTi[i]] == 'X' or filas_TaTeTi[columna2_TaTeTi[i]] == 'X' or filas_TaTeTi[columna3_TaTeTi[i]] == 'X':
+            win_Player1 = True
+            print("Ganó Jugador 1!!!")
+            print("")
+            mostrar_tablero()
+            sys.exit()
+
+win_Player2 = False
 def win_player2_col():
     for i in (0, 1, 2):
         if columna1_TaTeTi[i] == '0' and columna2_TaTeTi[i] == '0' and columna3_TaTeTi[i] == '0':
+            win_Player2 = True
             print("Ganó Jugador 2!!!")
             print("")
             mostrar_tablero()
             sys.exit()
-        else:
-            return -1
 
 #TURNOS
 
@@ -110,3 +119,22 @@ print("")
 player1()
 os.system('clear')
 # Hacer Iteracion hasta que gane alguien
+while win_Player1 == False or win_Player2 == False:
+    print("Ahora es el turno del Jugador 2")
+    print("")
+    mostrar_tablero()
+    print("")
+    player2()
+    os.system('clear')
+    win_player2_col()
+    print("Ahora es el turno del Jugador 1")
+    print("")
+    mostrar_tablero()
+    print("")
+    player1()
+    os.system('clear')
+    win_player1_col()
+    win_player1_fila()
+    pass
+
+#revisar ganar fila, quedo iteracion bien
