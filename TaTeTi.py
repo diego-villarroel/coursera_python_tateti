@@ -19,21 +19,37 @@ def mostrar_tablero():
 
 #JUGADOR 1
 def player1():
-    seleccionPlayer1_columna = int(input("Selecciona una columna: ") - 1)
-    seleccionPlayer1_fila = int(input("Selecciona una fila: ") - 1)
+    yaJugo1 = False
+    while yaJugo1 == False:
+        seleccionPlayer1_columna = int(input("Selecciona una columna: ") - 1)
+        seleccionPlayer1_fila = int(input("Selecciona una fila: ") - 1)
 
-    fila_Player1 = filas_TaTeTi[seleccionPlayer1_fila]
-    columna_Player1 = fila_Player1[seleccionPlayer1_columna] = 'X'
+        fila_Player1 = filas_TaTeTi[seleccionPlayer1_fila]
+
+        if fila_Player1[seleccionPlayer1_columna] == '_':
+            fila_Player1[seleccionPlayer1_columna] = 'X'
+            yaJugo1 = True
+        else:
+            print("")
+            print("Ya hay una ficha puesta! Elegí otra posición")
+            print("")
 
 #JUGADOR 2
 def player2():
-    boleano = False
+    yaJugo2 = False
+    while yaJugo2 == False:
+        seleccionPlayer2_columna = int(input("Selecciona una columna: ") - 1)
+        seleccionPlayer2_fila = int(input("Selecciona una fila: ") - 1)
 
-    seleccionPlayer2_columna = int(input("Selecciona una columna: ") - 1)
-    seleccionPlayer2_fila = int(input("Selecciona una fila: ") - 1)
+        fila_Player2 = filas_TaTeTi[seleccionPlayer2_fila]
 
-    fila_Player2 = filas_TaTeTi[seleccionPlayer2_fila]
-    columna_Player2 = fila_Player2[seleccionPlayer2_columna] = '0'
+        if fila_Player2[seleccionPlayer2_columna] == '_':
+            fila_Player2[seleccionPlayer2_columna] = '0'
+            yaJugo2 = True
+        else:
+            print("")
+            print("Ya hay una ficha puesta! Elegí otra posición")
+            print("")
 
 #WIN PLAYER1
 win_Player1 = False
@@ -105,6 +121,10 @@ def win_player2_fila3():
         mostrar_tablero()
         sys.exit()
 
+#EMPATE
+def empate():
+    empate = False
+
 #TURNOS
 
 def turno_player1():
@@ -167,9 +187,11 @@ print("")
 player1()
 os.system('clear')
 # Hacer Iteracion hasta que gane alguien
-while win_Player1 == False or win_Player2 == False:
+while win_Player1 == False or win_Player2 == False or empate == False:
     turno_player2()
+    empate()
     turno_player1()
+    empate()
     pass
 
 #revisar ganar fila, quedo iteracion bien
