@@ -31,7 +31,7 @@ def player1():
             yaJugo1 = True
         else:
             print("")
-            print("Ya hay una ficha puesta! Elegí otra posición")
+            print("Ya hay una ficha puesta AHÍ! Elegí otra posición")
             print("")
 
 #JUGADOR 2
@@ -48,7 +48,7 @@ def player2():
             yaJugo2 = True
         else:
             print("")
-            print("Ya hay una ficha puesta! Elegí otra posición")
+            print("Ya hay una ficha puesta AHÍ! Elegí otra posición")
             print("")
 
 #WIN PLAYER1
@@ -57,7 +57,7 @@ def win_player1_col():
     for i in (0, 1, 2):
         if columna1_TaTeTi[i] == 'X' and columna2_TaTeTi[i] == 'X' and columna3_TaTeTi[i] == 'X':
             win_Player1 = True
-            print("Ganó Jugador 1!!!")
+            print("   ｡^‿^｡          GANÓ JUGADOR 1!!!")
             print("")
             mostrar_tablero()
             sys.exit()
@@ -65,7 +65,7 @@ def win_player1_col():
 def win_player1_fila1():
     if columna1_TaTeTi[0] == 'X' and columna1_TaTeTi[1] == 'X' and columna1_TaTeTi[2] == 'X':
         win_Player1 = True
-        print("Ganó Jugador 1!!!")
+        print("             GANÓ JUGADOR 1!!!   --->")
         print("")
         mostrar_tablero()
         sys.exit()
@@ -73,7 +73,7 @@ def win_player1_fila1():
 def win_player1_fila2():
     if columna2_TaTeTi[0] == 'X' and columna2_TaTeTi[1] == 'X' and columna2_TaTeTi[2] == 'X':
         win_Player1 = True
-        print("Ganó Jugador 1!!!")
+        print("             GANÓ JUGADOR 1!!!   --->")
         print("")
         mostrar_tablero()
         sys.exit()
@@ -81,7 +81,7 @@ def win_player1_fila2():
 def win_player1_fila3():
     if columna3_TaTeTi[0] == 'X' and columna3_TaTeTi[1] == 'X' and columna3_TaTeTi[2] == 'X':
         win_Player1 = True
-        print("Ganó Jugador 1!!!")
+        print("             GANÓ JUGADOR 1!!!   --->")
         print("")
         mostrar_tablero()
         sys.exit()
@@ -92,7 +92,7 @@ def win_player2_col():
     for i in (0, 1, 2):
         if columna1_TaTeTi[i] == '0' and columna2_TaTeTi[i] == '0' and columna3_TaTeTi[i] == '0':
             win_Player2 = True
-            print("Ganó Jugador 2!!!")
+            print("   ｡^‿^｡          GANÓ JUGADOR 2!!!")
             print("")
             mostrar_tablero()
             sys.exit()
@@ -100,7 +100,7 @@ def win_player2_col():
 def win_player2_fila1():
     if columna1_TaTeTi[0] == 'X' and columna1_TaTeTi[1] == 'X' and columna1_TaTeTi[2] == 'X':
         win_Player2 = True
-        print("Ganó Jugador 1!!!")
+        print("             GANÓ JUGADOR 2!!!   --->")
         print("")
         mostrar_tablero()
         sys.exit()
@@ -108,7 +108,7 @@ def win_player2_fila1():
 def win_player2_fila2():
     if columna2_TaTeTi[0] == 'X' and columna2_TaTeTi[1] == 'X' and columna2_TaTeTi[2] == 'X':
         win_Player2 = True
-        print("Ganó Jugador 1!!!")
+        print("             GANÓ JUGADOR 2!!!   --->")
         print("")
         mostrar_tablero()
         sys.exit()
@@ -116,7 +116,7 @@ def win_player2_fila2():
 def win_player2_fila3():
     if columna3_TaTeTi[0] == 'X' and columna3_TaTeTi[1] == 'X' and columna3_TaTeTi[2] == 'X':
         win_Player2 = True
-        print("Ganó Jugador 1!!!")
+        print("             GANÓ JUGADOR 2!!!   --->")
         print("")
         mostrar_tablero()
         sys.exit()
@@ -124,6 +124,14 @@ def win_player2_fila3():
 #EMPATE
 def empate():
     empate = False
+
+    if columna3_TaTeTi[0] != '_' and columna3_TaTeTi[1] != '_' and columna3_TaTeTi[2] != '_':
+        if columna2_TaTeTi[0] != '_' and columna2_TaTeTi[1] != '_' and columna2_TaTeTi[2] != '_':
+            if columna1_TaTeTi[0] != '_' and columna1_TaTeTi[1] != '_' and columna1_TaTeTi[2] != '_':
+                print("     (・о・)        EMPATE CHANGOS!!!")
+                print("")
+                mostrar_tablero()
+                sys.exit()
 
 #TURNOS
 
@@ -151,7 +159,7 @@ def turno_player2():
     win_player2_fila2()
     win_player2_fila3()
 
-#INTRODUCCION E INSTRUCCIONES
+#       ---- INTRODUCCION E INSTRUCCIONES ----
 print("BIENVENIDOS A CLASIC TA-TE-TI - 2 Jugadores")
 print("")
 print("Hecho por Diego Villarroel")
@@ -179,19 +187,16 @@ raw_input("Presiona Enter para continuar...")
 
 os.system('clear')
 
-#GAMEPLAY
+#       ---- GAMEPLAY ----
 print("Comienza el Jugador 1!")
 print("")
 mostrar_tablero()
 print("")
 player1()
 os.system('clear')
-# Hacer Iteracion hasta que gane alguien
 while win_Player1 == False or win_Player2 == False or empate == False:
     turno_player2()
     empate()
     turno_player1()
     empate()
     pass
-
-#revisar ganar fila, quedo iteracion bien
